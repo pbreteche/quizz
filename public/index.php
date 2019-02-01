@@ -10,5 +10,6 @@
 </head>
 <body>
     <h1>Quizz</h1>
+    <p><?= include '../src/test.php' ?></p>
 </body>
 </html>
