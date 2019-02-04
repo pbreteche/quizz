@@ -1,0 +1,13 @@
+{
+    "name": "pierre/quizz",
+    "description": "C'est un très joli projet",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Pierre Bretéché",
+            "email": "pbreteche@dawan.fr"
+        }
+    ],
+    "require": {}
+}
