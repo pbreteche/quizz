@@ -1,15 +1,18 @@
-<!doctype html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width,initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Quizz</title>
-    <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
-    <h1>Quizz</h1>
-    <p><?= include '../src/test.php' ?></p>
-</body>
-</html>
+<?php
+
+require '../src/Http/Request.php';
+require '../src/Http/Router.php';
+
+$httpRequest = Http\Request::generate();
+
+$router = new \Http\Router();
+
+try {
+    $router->getRouteFromRequest($httpRequest);
+}
+catch (\Exception $exception) {
+    http_response_code(404);
+    echo '<h1>Cette page n\'existe pas</h1>';
+    die;
+}
+
