@@ -14,5 +14,8 @@
             "Pierre\\": "src/"
         }
     },
-    "require": {}
+    "require": {
+        "php": "^7.2",
+        "monolog/monolog": "^1.24"
+    }
 }
