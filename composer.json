@@ -9,5 +9,10 @@
             "email": "pbreteche@dawan.fr"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "Pierre\\": "src/"
+        }
+    },
     "require": {}
 }

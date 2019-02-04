@@ -1,8 +1,6 @@
 <?php
 
-require '../src/Http/Request.php';
-require '../src/Http/Router.php';
-require '../src/Home/Hier.php';
+require '../vendor/autoload.php';
 
 $httpRequest = \Pierre\Http\Request::generate();
 
