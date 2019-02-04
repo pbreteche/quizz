@@ -1,6 +1,6 @@
 <?php
 
-namespace Http;
+namespace Pierre\Http;
 
 
 class Router

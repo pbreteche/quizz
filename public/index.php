@@ -4,9 +4,9 @@ require '../src/Http/Request.php';
 require '../src/Http/Router.php';
 require '../src/Home/Hier.php';
 
-$httpRequest = Http\Request::generate();
+$httpRequest = \Pierre\Http\Request::generate();
 
-$router = new \Http\Router();
+$router = new \Pierre\Http\Router();
 
 try {
     $router->getRouteFromRequest($httpRequest);
@@ -17,7 +17,7 @@ catch (\Exception $exception) {
     die;
 }
 
-$hier = new \Home\Hier();
+$hier = new \Pierre\Home\Hier();
 
 echo '<h1>' . $hier->speak() . '</h1>';
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Home;
+namespace Pierre\Home;
 
 
 class Hier
