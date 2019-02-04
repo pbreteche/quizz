@@ -2,6 +2,7 @@
 
 require '../src/Http/Request.php';
 require '../src/Http/Router.php';
+require '../src/Home/Hier.php';
 
 $httpRequest = Http\Request::generate();
 
@@ -15,4 +16,8 @@ catch (\Exception $exception) {
     echo '<h1>Cette page n\'existe pas</h1>';
     die;
 }
+
+$hier = new \Home\Hier();
+
+echo '<h1>' . $hier->speak() . '</h1>';
 

@@ -6,7 +6,7 @@ namespace Home;
 class Hier
 {
 
-    public function speak()
+    public function speak(): string
     {
         return 'Hi!';
     }
