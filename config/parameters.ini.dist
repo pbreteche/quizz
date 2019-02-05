@@ -1,0 +1,4 @@
+[database]
+dsn=mysql:host=<host-name>;dbname=<database-name>
+username=<your-name>
+password=<your-password>

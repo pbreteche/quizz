@@ -5,16 +5,15 @@ namespace Pierre\Model;
 
 class QuestionProvider
 {
-    const LIST = [
-        'C\'est quoi cette bouteille de lait ?',
-        'Qu\'est-ce que l\'univers?',
-        'Quelle est la différence entre un gendarme ?',
-    ];
 
     public function getQuestion()
     {
-        $choice = random_int(0, 2);
+        $config = parse_ini_file(__DIR__ . '/../../config/parameters.ini');
 
-        return self::LIST[$choice];
+        $pdo = new \PDO($config['dsn'], $config['username'], $config['password']);
+
+        $stmt = $pdo->query('SELECT q.id, q.title FROM question q WHERE q.id=1');
+        $stmt->execute();
+        return $stmt->fetch()['title'];
     }
 }
