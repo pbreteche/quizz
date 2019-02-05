@@ -2,24 +2,41 @@
 
 namespace Pierre\Controller;
 
-
+use Pierre\Html\HtmlLoader;
 use Pierre\Http\Response;
+use Pierre\Model\QuestionProvider;
 
 class Controller
 {
 
-    public function homePage()
+    private $loader;
+
+    public function __construct()
     {
-        return new Response('<h1> Accueil </h1>');
+        $this->loader = new HtmlLoader();
     }
 
-    public function quizzPage()
+    public function homePage(): Response
     {
-        return new Response('<h1> Quizz </h1>');
+        $content = $this->loader->load('HomePage');
+
+        return new Response($content);
     }
 
-    public function resultPage()
+    public function quizzPage(): Response
     {
-        return new Response('<h1> Résultat </h1>');
+        $provider = new QuestionProvider();
+        $question = $provider->getQuestion();
+
+        $content = $this->loader->load('Quizz', ['question' => $question]);
+
+        return new Response($content);
+    }
+
+    public function resultPage(): Response
+    {
+        $content = $this->loader->load('Result');
+
+        return new Response($content);
     }
 }
