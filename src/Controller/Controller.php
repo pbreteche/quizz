@@ -28,7 +28,7 @@ class Controller
         $provider = new QuestionProvider();
         $question = $provider->getQuestion();
 
-        $content = $this->loader->load('Quizz', ['question' => $question]);
+        $content = $this->loader->load('Quizz', $question);
 
         return new Response($content);
     }
