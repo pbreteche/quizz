@@ -1,4 +1,46 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
 h1 {
-  background-color: #953b21;
+  margin: 0;
+  padding: 1em;
+  background-color: #BF6952;
   color: #abcdef;
+}
+
+h2 {
+  margin: 0;
+  padding: 1em;
+  background-color: #abcdef;
+  color: #BF6952;
+}
+
+input[type=radio] {
+  display: none;
+}
+
+
+input[type=radio] + label {
+  display: block;
+  padding: 1em;
+  margin: .5em;
+  transition: all 400ms;
+  background-color: lightgray;
+  cursor: pointer;
+}
+
+input[type=radio]:checked + label {
+  background-color: orange;
+}
+
+button {
+  cursor: pointer;
+  margin: 0 auto;
+  display: block;
+  font-size: 1.4em;
+  padding: 1em;
+  border: none;
+  background-color: lightgreen;
 }
