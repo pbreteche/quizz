@@ -25,7 +25,7 @@ class QuestionProvider
         return $stmt->fetch();
     }
 
-    public function getSeries(string $seriesSlug, int $questionNumber = 1)
+    public function getSeries(string $seriesSlug, int $questionNumber = 1): Question
     {
         if (!$this->pdo) {
             $this->connect();
@@ -45,13 +45,16 @@ class QuestionProvider
         $stmt->bindValue(':slug', $seriesSlug);
         $stmt->bindValue(':index', $index, \PDO::PARAM_INT);
         $stmt->execute();
-        $series = $stmt->fetch();
+        $series = $stmt->fetch(\PDO::FETCH_ASSOC);
 
         if (!$series) {
             var_dump($stmt->errorInfo());
             throw new \Exception('Le quizz «' . $seriesSlug . '» n\'existe pas');
         }
-        return $series;
+
+        $question = Question::createFromArray($series);
+
+        return $question;
     }
 
     private function connect()

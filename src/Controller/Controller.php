@@ -34,9 +34,9 @@ class Controller
         $questionNumber = $urlParameters[1];
 
         $provider = new QuestionProvider();
-        $series = $provider->getSeries($seriesSlug, (int)$questionNumber);
+        $question = $provider->getSeries($seriesSlug, (int)$questionNumber);
 
-        $content = $this->loader->load('Quizz', $series);
+        $content = $this->loader->load('Quizz', ['question' => $question]);
 
         return new Response($content);
     }

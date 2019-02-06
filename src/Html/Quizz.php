@@ -11,21 +11,16 @@
 <body>
 <h1>Question</h1>
 
-<h2><?= $data['title'] ?></h2>
+<h2><?= $data['question']->getTitle() ?></h2>
 
 <form method="post">
+    <?php $choices = $data['question']->getChoices() ?>
+    <?php for ($i=0; $i < count($choices); $i++): ?>
     <div class="response">
-        <input type="radio" name="response" value="good" id="response_good" />
-        <label for="response_good"><?= $data['good_choice'] ?></label>
+        <input type="radio" name="response" value="<?= $choices[$i]['good'] ? 'good' : 'bad'?>" id="response_<?= $i ?>" />
+        <label for="response_good"><?= $choices[$i]['label'] ?></label>
     </div>
-    <div class="response">
-        <input type="radio" name="response" value="bad" id="response_bad_1" />
-        <label for="response_bad_1"><?= $data['bad_choice_1'] ?></label>
-    </div>
-    <div class="response">
-        <input type="radio" name="response" value="bad" id="response_bad_2" />
-        <label for="response_bad_2"><?= $data['bad_choice_2'] ?></label>
-    </div>
+    <?php endfor; ?>
     <button>Go!</button>
 </form>
 </body>
