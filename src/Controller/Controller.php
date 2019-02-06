@@ -25,12 +25,16 @@ class Controller
 
     public function quizzPage(array $urlParameters): Response
     {
-        var_dump($urlParameters);
+        $seriesSlug = $urlParameters[0];
+
+        if (!$seriesSlug) {
+            throw new \Exception('Il faut nous dire quelle série passer');
+        }
 
         $provider = new QuestionProvider();
-        $question = $provider->getQuestion();
+        $series = $provider->getSeries($seriesSlug);
 
-        $content = $this->loader->load('Quizz', $question);
+        $content = $this->loader->load('Quizz', $series);
 
         return new Response($content);
     }
