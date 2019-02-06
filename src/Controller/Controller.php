@@ -31,8 +31,10 @@ class Controller
             throw new \Exception('Il faut nous dire quelle série passer');
         }
 
+        $questionNumber = $urlParameters[1];
+
         $provider = new QuestionProvider();
-        $series = $provider->getSeries($seriesSlug);
+        $series = $provider->getSeries($seriesSlug, (int)$questionNumber);
 
         $content = $this->loader->load('Quizz', $series);
 

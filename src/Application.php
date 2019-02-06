@@ -16,13 +16,13 @@ class Application
             return $router->getRouteFromRequest($request);
         }
         catch (\Exception $exception) {
-            return $this->createPage404();
+            return $this->createPage404($exception->getMessage());
         }
     }
 
-    private function createPage404()
+    private function createPage404(string $message)
     {
-        $response = new Response('<h1>Cette page n\'existe pas</h1>');
+        $response = new Response('<h1>Cette page n\'existe pas</h1><p>' . $message .'</p>');
         $response->setStatus(404);
         return $response;
     }

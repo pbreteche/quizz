@@ -11,6 +11,6 @@
 <body>
     <h1>Accueil</h1>
 
-    Démarrez notre méga <a href="/quizz">Quiiiiizz</a> !
+    Démarrez notre méga <a href="/quizz/quizz-facile/1">Quiiiiizz</a> !
 </body>
 </html>
