@@ -16,15 +16,17 @@ class Controller
         $this->loader = new HtmlLoader();
     }
 
-    public function homePage(): Response
+    public function homePage(array $urlParameters): Response
     {
         $content = $this->loader->load('HomePage');
 
         return new Response($content);
     }
 
-    public function quizzPage(): Response
+    public function quizzPage(array $urlParameters): Response
     {
+        var_dump($urlParameters);
+
         $provider = new QuestionProvider();
         $question = $provider->getQuestion();
 
@@ -33,7 +35,7 @@ class Controller
         return new Response($content);
     }
 
-    public function resultPage(): Response
+    public function resultPage(array $urlParameters): Response
     {
         $content = $this->loader->load('Result');
 

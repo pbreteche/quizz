@@ -10,17 +10,20 @@ class Router
 
     public function getRouteFromRequest(Request $request): Response
     {
-        $url = $request->getUrl();
+        $url = trim($request->getUrl(), '/');
+        $urlElements = explode('/', $url);
+
+        $action = array_shift($urlElements);
 
         $controller = new Controller();
 
-        switch($url) {
-            case '/':
-                return $controller->homePage();
-            case '/quizz':
-                return $controller->quizzPage();
-            case '/result':
-                return $controller->resultPage();
+        switch($action) {
+            case '':
+                return $controller->homePage($urlElements);
+            case 'quizz':
+                return $controller->quizzPage($urlElements);
+            case 'result':
+                return $controller->resultPage($urlElements);
         }
 
         throw new \Exception('Route not found');
