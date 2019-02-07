@@ -3,6 +3,8 @@
 namespace Pierre\Model;
 
 
+use Pierre\Exception\DataNotFoundException;
+
 class QuestionProvider
 {
 
@@ -49,7 +51,7 @@ class QuestionProvider
 
         if (!$series) {
             var_dump($stmt->errorInfo());
-            throw new \Exception('Le quizz «' . $seriesSlug . '» n\'existe pas');
+            throw new DataNotFoundException('Le quizz «' . $seriesSlug . '» n\'existe pas');
         }
 
         $question = Question::createFromArray($series);

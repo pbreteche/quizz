@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<h1>Question</h1>
+<h1>Série: <?= $data['question']->getSeriesTitle() ?></h1>
 
 <h2><?= $data['question']->getTitle() ?></h2>
 
@@ -18,7 +18,7 @@
     <?php for ($i=0; $i < count($choices); $i++): ?>
     <div class="response">
         <input type="radio" name="response" value="<?= $choices[$i]['good'] ? 'good' : 'bad'?>" id="response_<?= $i ?>" />
-        <label for="response_good"><?= $choices[$i]['label'] ?></label>
+        <label for="response_<?= $i ?>"><?= $choices[$i]['label'] ?></label>
     </div>
     <?php endfor; ?>
     <button>Go!</button>

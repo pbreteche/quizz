@@ -4,6 +4,7 @@ namespace Pierre\Http;
 
 
 use Pierre\Controller\Controller;
+use Pierre\Exception\RouteNotFoundException;
 
 class Router
 {
@@ -21,11 +22,12 @@ class Router
             case '':
                 return $controller->homePage($urlElements);
             case 'quizz':
+                if (count($urlElements) != 2) continue;
                 return $controller->quizzPage($urlElements);
             case 'result':
                 return $controller->resultPage($urlElements);
         }
 
-        throw new \Exception('Route not found');
+        throw new RouteNotFoundException();
     }
 }
