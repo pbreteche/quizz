@@ -36,6 +36,24 @@ class QuestionProvider
         $index = $questionNumber - 1;
 
         $stmt = $this->pdo->prepare(
+            'SELECT s.*, COUNT(sq.question_id) AS question_count FROM `series` s
+            JOIN series_question sq ON s.id = sq.series_id
+            WHERE s.slug = :slug
+            GROUP BY s.id'
+        );
+        $stmt->bindValue(':slug', $seriesSlug);
+        $stmt->execute();
+        $series = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+        if (!$series) {
+            throw new DataNotFoundException('pas trouvé la série');
+        }
+
+        if(1 > $index || $series['question_count'] < $index) {
+            throw new DataNotFoundException('pas trouvé la question');
+        }
+
+        $stmt = $this->pdo->prepare(
             'SELECT s.id, s.title as series_title, s.slug, q.title, q.good_choice, q.bad_choice_1, q.bad_choice_2
             FROM series s 
             JOIN series_question sq ON s.id = sq.series_id
