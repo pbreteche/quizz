@@ -8,6 +8,8 @@ class Response
 
     private $status;
 
+    private $headers = [];
+
     public function __construct(string $content)
     {
         $this->status = 200;
@@ -21,7 +23,15 @@ class Response
 
     public function send(): void
     {
+        foreach($this->headers as $headerName => $headerValue) {
+            header($headerName . ': ' . $headerValue);
+        }
         http_response_code($this->status);
         echo $this->content;
+    }
+
+    public function addHeader(string $name, string $value)
+    {
+        $this->headers[strtolower($name)] =  $value;
     }
 }

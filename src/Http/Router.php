@@ -23,6 +23,9 @@ class Router
                 return $controller->homePage($urlElements);
             case 'quizz':
                 if (count($urlElements) != 2) continue;
+                if ($request->getMethod() === 'POST') {
+                    return $controller->responsePage($urlElements);
+                }
                 return $controller->quizzPage($urlElements);
             case 'result':
                 return $controller->resultPage($urlElements);

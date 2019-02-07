@@ -42,6 +42,15 @@ class Controller
         return new Response($content);
     }
 
+    public function responsePage(array $urlParameters)
+    {
+        $urlParameters[1]++;
+        $response = new Response('');
+        $response->addHeader('Location', '/quizz/' . implode('/', $urlParameters));
+        $response->setStatus(303);
+        return $response;
+    }
+
     private function validateQuizzParameters(array $parameters)
     {
         $seriesSlug = $parameters[0];
