@@ -4,6 +4,7 @@ namespace Pierre\Controller;
 
 use Pierre\Exception\BadControllerParameterException;
 use Pierre\Html\HtmlLoader;
+use Pierre\Http\Request;
 use Pierre\Http\Response;
 use Pierre\Model\QuestionProvider;
 
@@ -26,6 +27,7 @@ class Controller
 
     public function quizzPage(array $urlParameters): Response
     {
+        var_dump($_SESSION);
         $this->validateQuizzParameters($urlParameters);
         $provider = new QuestionProvider();
         $question = $provider->getSeries($urlParameters[0], (int)$urlParameters[1]);
@@ -42,8 +44,12 @@ class Controller
         return new Response($content);
     }
 
-    public function responsePage(array $urlParameters)
+    public function responsePage(array $urlParameters, Request $request): Response
     {
+        $currentResponse = $request->getPostContent('response');
+        $previousResponses = $request->readSession('response') ?? [];
+        $previousResponses[] = $currentResponse;
+        $request->writeSession('response', $previousResponses);
         $urlParameters[1]++;
         $response = new Response('');
         $response->addHeader('Location', '/quizz/' . implode('/', $urlParameters));
@@ -51,7 +57,7 @@ class Controller
         return $response;
     }
 
-    private function validateQuizzParameters(array $parameters)
+    private function validateQuizzParameters(array $parameters): void
     {
         $seriesSlug = $parameters[0];
 

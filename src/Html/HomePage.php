@@ -12,5 +12,9 @@
     <h1>Accueil</h1>
 
     Démarrez notre méga <a href="/quizz/quizz-facile/1">Quiiiiizz</a> !
+    <script>
+        let peopleName = 'les gens';
+        console.log('coucou ' + peopleName);
+    </script>
 </body>
 </html>

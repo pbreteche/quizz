@@ -33,12 +33,12 @@ class Request
         return $this->method;
     }
 
-    public function writeSession(string $key, string $value)
+    public function writeSession(string $key, $value)
     {
         $_SESSION[$key] = $value;
     }
 
-    public function readSession(string $key): string
+    public function readSession(string $key)
     {
         return $_SESSION[$key];
     }
