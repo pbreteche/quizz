@@ -49,7 +49,7 @@ class QuestionProvider
             throw new DataNotFoundException('pas trouvé la série');
         }
 
-        if(1 > $index || $series['question_count'] < $index) {
+        if(1 > $questionNumber || $series['question_count'] < $questionNumber) {
             throw new DataNotFoundException('pas trouvé la question');
         }
 
